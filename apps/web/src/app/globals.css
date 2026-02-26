@@ -1,0 +1,543 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+/* CSS Custom Properties */
+:root {
+  /* Backgrounds */
+  --color-bg-void:        #08090a;
+  --color-bg-primary:     #0d1117;
+  --color-bg-secondary:   #111820;
+  --color-bg-elevated:    #1a2232;
+  --color-bg-surface:     #1f2d3d;
+
+  /* Gold accents */
+  --color-gold-primary:   #c9a84c;
+  --color-gold-bright:    #e8c56d;
+  --color-gold-muted:     #8a6f35;
+  --color-gold-dark:      #4d3d1a;
+
+  /* Cyan/Blue accents */
+  --color-cyan-primary:   #35b6ec;
+  --color-cyan-bright:    #5fd3ff;
+  --color-cyan-dark:      #1c4d6e;
+  --color-blue-nav:       #1e3a5f;
+
+  /* Text */
+  --color-text-primary:   #e8eaed;
+  --color-text-secondary: #9ba8b4;
+  --color-text-muted:     #5a6a7a;
+  --color-text-heading:   #c9a84c;
+  --color-text-inverse:   #0d1117;
+
+  /* Status */
+  --color-status-online:  #4caf82;
+  --color-status-warning: #f5a623;
+  --color-status-error:   #e05252;
+  --color-status-info:    #35b6ec;
+  --color-status-offline: #4a5568;
+
+  /* Borders */
+  --color-border-subtle:  #1e2d3d;
+  --color-border-default: #2a3d52;
+  --color-border-strong:  #3d5a73;
+  --color-border-gold:    #c9a84c;
+
+  /* Typography */
+  --font-display: 'Orbitron', 'Eurostile', sans-serif;
+  --font-body:    'Exo 2', 'Titillium Web', sans-serif;
+  --font-ui:      'Share Tech Mono', 'Courier New', monospace;
+  --font-mono:    'Share Tech Mono', 'IBM Plex Mono', monospace;
+
+  /* Text sizes */
+  --text-hero:    3.5rem;
+  --text-h1:      2.25rem;
+  --text-h2:      1.75rem;
+  --text-h3:      1.375rem;
+  --text-h4:      1.125rem;
+  --text-body-lg: 1rem;
+  --text-body:    0.875rem;
+  --text-small:   0.75rem;
+  --text-label:   0.6875rem;
+  --text-code:    0.8125rem;
+
+  /* Spacing */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* Border radii */
+  --radius-none: 0px;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-xl:   12px;
+
+  /* Animations */
+  --duration-fast:   100ms;
+  --duration-normal: 200ms;
+  --duration-slow:   400ms;
+  --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:        cubic-bezier(0, 0, 0.2, 1);
+
+  /* Shadows */
+  --shadow-card:   0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-modal:  0 8px 48px rgba(0, 0, 0, 0.7);
+  --glow-gold:     0 0 16px rgba(201, 168, 76, 0.3);
+  --glow-cyan:     0 0 16px rgba(53, 182, 236, 0.3);
+
+  /* Gradients */
+  --gradient-hero:     linear-gradient(180deg, #08090a 0%, #0d1117 40%, #0a1520 100%);
+  --gradient-gold:     linear-gradient(135deg, #c9a84c 0%, #e8c56d 50%, #a07830 100%);
+  --gradient-vignette: linear-gradient(to bottom, transparent 0%, rgba(8, 9, 10, 0.7) 60%, #08090a 100%);
+  --gradient-sidebar:  linear-gradient(90deg, #0d1117 0%, #111820 100%);
+}
+
+/* Base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography base */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-heading);
+  line-height: 1.2;
+}
+
+h3, h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+a {
+  color: var(--color-cyan-primary);
+  text-decoration: none;
+  transition: color var(--duration-normal) var(--ease-standard);
+}
+
+a:hover {
+  color: var(--color-cyan-bright);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-gold-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* RSI Corner decorators */
+.rsi-corner {
+  position: relative;
+}
+
+.rsi-corner::before,
+.rsi-corner::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--color-gold-primary);
+  border-style: solid;
+}
+
+.rsi-corner::before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+
+.rsi-corner::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+/* RSI Divider with central ornament */
+.rsi-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-gold-muted);
+}
+
+.rsi-divider::before,
+.rsi-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-muted));
+}
+
+.rsi-divider::after {
+  background: linear-gradient(90deg, var(--color-gold-muted), transparent);
+}
+
+/* Card with gold accent */
+.card--accent-gold {
+  position: relative;
+  overflow: hidden;
+}
+
+.card--accent-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gradient-gold);
+}
+
+/* Terminal style */
+.terminal {
+  background: rgba(8, 14, 22, 0.92);
+  border: 1px solid var(--color-cyan-dark);
+  font-family: var(--font-mono);
+  color: var(--color-cyan-primary);
+  padding: var(--space-6);
+  position: relative;
+}
+
+.terminal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes rsi-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0% 0);
+  }
+}
+
+@keyframes rsi-pulse {
+  0%, 100% { box-shadow: 0 0 4px var(--color-cyan-primary); }
+  50%       { box-shadow: 0 0 12px var(--color-cyan-bright), 0 0 24px rgba(53, 182, 236, 0.3); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes rsi-glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(2px, -1px); }
+  60%  { transform: translate(-1px, 2px); }
+  80%  { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes rsi-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-strong);
+}
+
+/* ─── HERO: Animated star field layers ──────────────────────────────────────── */
+
+.star-field-1 {
+  background-image:
+    radial-gradient(1px 1px at 4%  6%,  rgba(255,255,255,0.50), transparent),
+    radial-gradient(1px 1px at 12% 28%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 21% 14%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 33% 45%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 46% 22%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 58% 68%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 67% 9%,  rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 76% 37%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(1px 1px at 84% 54%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 93% 72%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 8%  82%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 17% 61%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 25% 90%, rgba(255,255,255,0.25), transparent),
+    radial-gradient(1px 1px at 38% 75%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 52% 88%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 63% 50%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 71% 80%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 89% 15%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1px 1px at 97% 40%, rgba(255,255,255,0.30), transparent),
+    radial-gradient(1px 1px at 43% 3%,  rgba(255,255,255,0.50), transparent);
+  background-size: 600px 500px;
+  animation: starDrift1 120s linear infinite;
+}
+
+.star-field-2 {
+  background-image:
+    radial-gradient(1.5px 1.5px at 7%  18%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(1.5px 1.5px at 23% 42%, rgba(95,211,255,0.40),  transparent),
+    radial-gradient(1.5px 1.5px at 41% 8%,  rgba(255,255,255,0.40), transparent),
+    radial-gradient(1.5px 1.5px at 56% 65%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(1.5px 1.5px at 72% 30%, rgba(95,211,255,0.35),  transparent),
+    radial-gradient(1.5px 1.5px at 88% 55%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1.5px 1.5px at 14% 78%, rgba(255,255,255,0.50), transparent),
+    radial-gradient(1.5px 1.5px at 35% 92%, rgba(95,211,255,0.30),  transparent),
+    radial-gradient(1.5px 1.5px at 61% 85%, rgba(255,255,255,0.40), transparent),
+    radial-gradient(1.5px 1.5px at 79% 95%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1.5px 1.5px at 96% 72%, rgba(95,211,255,0.40),  transparent),
+    radial-gradient(1.5px 1.5px at 47% 48%, rgba(255,255,255,0.50), transparent);
+  background-size: 800px 700px;
+  animation: starDrift2 160s linear infinite;
+}
+
+.star-field-3 {
+  background-image:
+    radial-gradient(2px 2px at 15% 25%, rgba(232,197,109,0.55), transparent),
+    radial-gradient(2px 2px at 35% 70%, rgba(255,255,255,0.60), transparent),
+    radial-gradient(2px 2px at 55% 20%, rgba(232,197,109,0.45), transparent),
+    radial-gradient(2px 2px at 75% 60%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(2px 2px at 90% 35%, rgba(232,197,109,0.40), transparent),
+    radial-gradient(2px 2px at 10% 85%, rgba(255,255,255,0.60), transparent),
+    radial-gradient(2px 2px at 50% 95%, rgba(232,197,109,0.35), transparent),
+    radial-gradient(2px 2px at 70% 10%, rgba(255,255,255,0.55), transparent);
+  background-size: 1000px 900px;
+  animation: starDrift3 200s linear infinite;
+}
+
+@keyframes starDrift1 {
+  from { background-position: 0 0; }
+  to   { background-position: 600px 500px; }
+}
+@keyframes starDrift2 {
+  from { background-position: 0 0; }
+  to   { background-position: -800px 350px; }
+}
+@keyframes starDrift3 {
+  from { background-position: 0 0; }
+  to   { background-position: 500px -900px; }
+}
+
+/* ─── HERO: Scan-line sweep ────────────────────────────────────────────────── */
+
+@keyframes heroScan {
+  0%   { top: 0%;   opacity: 0; }
+  4%   { opacity: 0.7; }
+  96%  { opacity: 0.2; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.hero-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201,168,76,0.5) 20%,
+    rgba(201,168,76,0.9) 50%,
+    rgba(201,168,76,0.5) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px rgba(201,168,76,0.4);
+  animation: heroScan 2.8s ease-in-out 0.2s forwards;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ─── HERO: Staggered content reveals ──────────────────────────────────────── */
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-el {
+  opacity: 0;
+  animation: heroFadeUp 0.7s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+.hero-el-fade {
+  opacity: 0;
+  animation: heroFadeIn 0.8s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* ─── SCROLL REVEAL ─────────────────────────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity  0.65s cubic-bezier(0, 0, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.65s cubic-bezier(0, 0, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity  0.65s cubic-bezier(0, 0, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.65s cubic-bezier(0, 0, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition:
+    opacity  0.65s cubic-bezier(0, 0, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.65s cubic-bezier(0, 0, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+.reveal-left.revealed,
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── FEATURE CARDS: CSS-only hover ─────────────────────────────────────────── */
+
+.feature-card {
+  transition:
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background   0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow   0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform    0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  border-color: #3d5a73;
+  background: #1a2232;
+  box-shadow:
+    0 8px 32px rgba(201, 168, 76, 0.10),
+    0 2px 8px  rgba(0, 0, 0, 0.40);
+  transform: translateY(-4px);
+}
+
+.feature-card:hover .feature-icon {
+  filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.35));
+  transition: filter 0.25s ease;
+}
+
+/* ─── GEOMETRIC background grid (subtle) ────────────────────────────────────── */
+
+.geo-grid-bg {
+  background-image:
+    linear-gradient(rgba(30, 45, 61, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 45, 61, 0.4) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ─── PRIMARY CTA hover glow ────────────────────────────────────────────────── */
+
+.btn-cta-primary {
+  transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-cta-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(201, 168, 76, 0.35), 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.btn-cta-secondary {
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-cta-secondary:hover {
+  background: rgba(77, 61, 26, 0.45) !important;
+  color: #e8c56d !important;
+  border-color: #e8c56d !important;
+  transform: translateY(-2px);
+}

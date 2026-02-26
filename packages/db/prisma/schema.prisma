@@ -1,0 +1,28 @@
+// Nexus Portal — Prisma Schema
+// Stub: datasource and generator only.
+// Models will be added when authentication and core features are implemented.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Models will be added here ────────────────────────────────────────────────
+//
+// Planned entities (per TECHNICAL.md):
+//   - User
+//   - MemberProfile
+//   - Org
+//   - Squad
+//   - Grade
+//   - Permission
+//   - OrgMembership (User → Org with Grade)
+//   - SquadMembership (User → Squad with delegated permissions)
+//   - AuditLog (actor, action, target, metadata, timestamp)
+//
+// Authorization model: RBAC with org-scope and squad-scope permissions.
+// Every sensitive action must be logged in AuditLog.
