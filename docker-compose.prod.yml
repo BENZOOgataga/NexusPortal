@@ -44,7 +44,7 @@ services:
       sh -lc "
       corepack enable &&
       corepack prepare pnpm@9.1.0 --activate &&
-      pnpm install --frozen-lockfile &&
+      pnpm install --frozen-lockfile --prod=false &&
       pnpm -C packages/db db:migrate:deploy &&
       pnpm -C apps/web build &&
       pnpm -C apps/web start --hostname 0.0.0.0 --port 3000
