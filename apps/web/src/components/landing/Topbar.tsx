@@ -15,7 +15,7 @@ export default function Topbar() {
             className="font-mono text-text-muted uppercase"
             style={{ fontSize: '10px', letterSpacing: '0.1em' }}
           >
-            ◆ NEXUS HORIZON TRADE & SECURE — ORGANISATION OPÉRATIONNELLE UEE
+            ◆ NEXUS HORIZON TRADE & SECURE — ORGANISATION OPÉRATIONNELLE NHTSC
           </span>
         </div>
 

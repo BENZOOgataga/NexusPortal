@@ -4,7 +4,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Nexus Horizon Trade & Secure — Organisation Star Citizen',
   description: 'Organisation multi-vecteur Star Citizen: doctrine, opérations, structure de commandement et recrutement.',
-  keywords: ['Star Citizen', 'Nexus Horizon Trade & Secure', 'organisation', 'recrutement', 'UEE'],
+  keywords: ['Star Citizen', 'Nexus Horizon Trade & Secure', 'organisation', 'recrutement', 'NHTSC'],
   robots: 'index, follow',
 }
 
