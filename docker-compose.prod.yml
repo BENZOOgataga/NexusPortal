@@ -28,11 +28,11 @@ services:
       NEXT_TELEMETRY_DISABLED: "1"
       DATABASE_URL: postgresql://${POSTGRES_USER:-nexus}:${POSTGRES_PASSWORD:-change-me}@db:5432/${POSTGRES_DB:-nexus}
       AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in .env}
-      AUTH_URL: ${AUTH_URL:?set AUTH_URL in .env}
+      AUTH_URL: ${AUTH_URL:-http://localhost:31881}
       NEXT_PUBLIC_TOLGEE_API_KEY: ${NEXT_PUBLIC_TOLGEE_API_KEY:-}
       NEXT_PUBLIC_TOLGEE_API_URL: ${NEXT_PUBLIC_TOLGEE_API_URL:-}
     ports:
-      - "3000:3000"
+      - "31881:3000"
     volumes:
       - type: bind
         source: ./

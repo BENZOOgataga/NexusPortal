@@ -32,11 +32,11 @@ services:
       WATCHPACK_POLLING: "true"
       DATABASE_URL: postgresql://${POSTGRES_USER:-nexus}:${POSTGRES_PASSWORD:-nexus}@db:5433/${POSTGRES_DB:-nexus}
       AUTH_SECRET: ${AUTH_SECRET:-dev-secret-change-me}
-      AUTH_URL: ${AUTH_URL:-http://localhost:3001}
+      AUTH_URL: ${AUTH_URL:-http://localhost:31882}
       NEXT_PUBLIC_TOLGEE_API_KEY: ${NEXT_PUBLIC_TOLGEE_API_KEY:-}
       NEXT_PUBLIC_TOLGEE_API_URL: ${NEXT_PUBLIC_TOLGEE_API_URL:-}
     ports:
-      - "3001:3001"
+      - "31882:3001"
     volumes:
       - ./:/workspace
       - dev_node_modules:/workspace/node_modules
