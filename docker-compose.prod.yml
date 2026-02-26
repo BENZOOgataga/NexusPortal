@@ -54,7 +54,7 @@ services:
       pnpm -C packages/db exec prisma migrate deploy &&
       pnpm -C apps/web build &&
       cd apps/web &&
-      node .next/standalone/server.js
+      node .next/standalone/apps/web/server.js
       "
     healthcheck:
       test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""]
