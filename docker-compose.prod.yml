@@ -37,7 +37,6 @@ services:
       - type: bind
         source: ./
         target: /workspace
-        read_only: true
       - prod_node_modules:/workspace/node_modules
       - prod_pnpm_store:/root/.local/share/pnpm/store
       - prod_next_cache:/workspace/apps/web/.next
