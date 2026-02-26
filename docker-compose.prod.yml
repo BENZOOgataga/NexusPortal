@@ -43,6 +43,9 @@ services:
       - prod_next_cache:/workspace/apps/web/.next
     command: >
       sh -lc "
+      apt-get update -y &&
+      apt-get install -y --no-install-recommends openssl ca-certificates &&
+      rm -rf /var/lib/apt/lists/* &&
       corepack enable &&
       corepack prepare pnpm@9.1.0 --activate &&
       pnpm install --frozen-lockfile --prod=false --force --reporter=append-only &&
