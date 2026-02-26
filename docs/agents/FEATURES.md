@@ -137,7 +137,7 @@ Chaque organisation dispose d'un **panneau d'administration** accessible uniquem
 
 La section communications est organisée en **channels** au sein de l'organisation. Il existe plusieurs types : channels texte standard, channels annonces (écriture réservée aux officiers), channels intel (accès restreint), et channels éphémères (se suppriment automatiquement après une durée définie).
 
-Les membres peuvent **mentionner** un collègue (`@handle`) ou un grade entier, déclenchant une notification. Les messages peuvent recevoir des **réactions** (emojis thématiques SC), être **épinglés** dans le channel, ou faire l'objet d'un **thread** (discussion dans un fil séparé).
+Les membres peuvent **mentionner** un collègue (`@handle`) ou un grade entier, déclenchant une notification. Les messages peuvent recevoir des **réactions** (pictogrammes symboliques SVG au style RSI/UEE — jamais d'emojis standard), être **épinglés** dans le channel, ou faire l'objet d'un **thread** (discussion dans un fil séparé).
 
 Des **messages directs** permettent des conversations privées entre deux membres de la même organisation.
 
@@ -207,11 +207,11 @@ La **marketplace interne** permet aux membres d'échanger entre eux des items in
 
 ## Analytics
 
-Le **dashboard analytique** présente les métriques clés de l'org : membres actifs cette semaine, taux de succès des ops, membres les plus actifs, channel le plus utilisé, vaisseau le plus déployé. Un graphe montre l'activité des 30 derniers jours.
+Le **dashboard analytique** présente les métriques opérationnelles clés de l'org : membres actifs cette semaine, taux de succès des opérations, membres les plus engagés, channel le plus actif, vaisseau le plus déployé. Un graphe montre l'activité des 30 derniers jours.
 
-Le **leaderboard** classe les membres sur plusieurs critères : participation aux ops, activité comms, contrats signés. Le classement peut être reseté mensuellement.
+Le **rapport de mérite opérationnel** évalue les membres selon des indicateurs formels : participation aux opérations, activité en communication, contrats honorés. Ce rapport est généré périodiquement et consultable par le commandement. Il ne constitue pas un classement public — c'est un outil de pilotage interne à l'usage des officiers.
 
-Le **Trust Score** est un score de confiance par membre basé sur sa présence aux ops, le respect de ses contrats, et son ancienneté. Il est affiché sur le profil et visible dans le roster. Des niveaux progressifs récompensent les membres fiables (Recrue → Fiable → Vétéran → Elite → Légende).
+L'**indice de fiabilité** est une évaluation formelle par membre, calculée à partir de sa présence aux opérations, du respect de ses engagements contractuels, et de son ancienneté au sein de l'organisation. Il est visible sur le profil et dans le roster. Il est structuré en niveaux d'accréditation opérationnelle : Recrue → Agent → Opérateur → Vétéran → Commandeur.
 
 ---
 
