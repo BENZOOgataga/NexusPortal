@@ -54,6 +54,9 @@ services:
       pnpm -C packages/db exec prisma migrate deploy &&
       pnpm -C apps/web build &&
       cd apps/web &&
+      mkdir -p .next/standalone/apps/web/.next/static .next/standalone/apps/web/public &&
+      cp -R .next/static/. .next/standalone/apps/web/.next/static/ &&
+      cp -R public/. .next/standalone/apps/web/public/ &&
       node .next/standalone/apps/web/server.js
       "
     healthcheck:
