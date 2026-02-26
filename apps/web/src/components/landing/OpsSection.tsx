@@ -1,10 +1,49 @@
-'use client'
+﻿'use client'
 
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useTranslate } from '@tolgee/react'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
 
 export default function OpsSection() {
   const { t } = useTranslate()
+  const [command, setCommand] = useState('')
+  const [statusKey, setStatusKey] = useState<'idle' | 'ok' | 'error'>('idle')
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  useEffect(() => {
+    const audio = new Audio('/audio/lizard-stereo-1.mp3')
+    audio.preload = 'auto'
+    audioRef.current = audio
+
+    return () => {
+      audio.pause()
+      audioRef.current = null
+    }
+  }, [])
+
+  const handleExecute = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const normalized = command.trim().toLowerCase()
+
+    if (normalized !== 'lizard') {
+      setStatusKey('error')
+      return
+    }
+
+    const audio = audioRef.current
+    if (!audio) {
+      setStatusKey('error')
+      return
+    }
+
+    try {
+      audio.currentTime = 0
+      await audio.play()
+      setStatusKey('ok')
+    } catch {
+      setStatusKey('error')
+    }
+  }
 
   const terminalLines = [
     { prefix: '>', text: t('ops.line_1', 'OP_ID: NOVA-STRIKE-7742'), color: '#35b6ec' },
@@ -87,9 +126,54 @@ export default function OpsSection() {
                   ))}
                 </div>
 
-                <div style={{ marginTop: '16px', color: '#35b6ec', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }} aria-hidden="true">
-                  <span>{'>'}</span>
-                  <span style={{ animation: 'blink 1s step-end infinite' }}>█</span>
+                <form onSubmit={(event) => void handleExecute(event)} style={{ marginTop: '18px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ color: '#8a6f35', fontSize: '13px' }}>{'>'}</span>
+                    <input
+                      type="text"
+                      value={command}
+                      onChange={(event) => setCommand(event.target.value)}
+                      aria-label={t('ops.command_aria', 'Terminal command input')}
+                      autoCapitalize="none"
+                      autoCorrect="off"
+                      spellCheck={false}
+                      style={{
+                        flex: 1,
+                        background: '#0d1117',
+                        border: '1px solid #1c4d6e',
+                        color: '#35b6ec',
+                        fontSize: '13px',
+                        lineHeight: '1',
+                        padding: '8px 10px',
+                        borderRadius: '2px',
+                        outline: 'none',
+                      }}
+                    />
+                    <button
+                      type="submit"
+                      className="font-mono uppercase"
+                      style={{
+                        background: '#1c4d6e',
+                        border: '1px solid #35b6ec',
+                        color: '#e8eaed',
+                        fontSize: '11px',
+                        letterSpacing: '0.08em',
+                        padding: '8px 10px',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {t('ops.command_execute', 'EXECUTE')}
+                    </button>
+                  </div>
+                </form>
+
+                <div style={{ marginTop: '10px', fontSize: '12px', color: statusKey === 'ok' ? '#4caf82' : statusKey === 'error' ? '#e05252' : '#35b6ec' }}>
+                  {statusKey === 'ok'
+                    ? t('ops.command_success', 'LIZARD PROTOCOL ACKNOWLEDGED')
+                    : statusKey === 'error'
+                      ? t('ops.command_error', 'UNKNOWN COMMAND')
+                      : t('ops.command_idle', 'Awaiting command input.')}
                 </div>
               </div>
             </div>
@@ -112,14 +196,14 @@ export default function OpsSection() {
               <p className="font-body text-text-secondary mb-6" style={{ fontSize: '14px', lineHeight: '1.8' }}>
                 {t(
                   'ops.paragraph_1',
-                  "Our campaigns are prepared like staff-level operations: explicit objectives, validated chain of command, and coordinated execution across specialized squads."
+                  'Our campaigns are prepared like staff-level operations: explicit objectives, validated chain of command, and coordinated execution across specialized squads.'
                 )}
               </p>
 
               <p className="font-body text-text-secondary mb-8" style={{ fontSize: '14px', lineHeight: '1.8' }}>
                 {t(
                   'ops.paragraph_2',
-                  "From tactical interception to multi-vector offensives, our doctrine stays the same: collective discipline, individual accountability, and systematic debrief after engagement."
+                  'From tactical interception to multi-vector offensives, our doctrine stays the same: collective discipline, individual accountability, and systematic debrief after engagement.'
                 )}
               </p>
 

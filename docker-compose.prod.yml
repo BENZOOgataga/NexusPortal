@@ -1,0 +1,64 @@
+name: nexus-horizon-prod
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nexus}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+      POSTGRES_DB: ${POSTGRES_DB:-nexus}
+    volumes:
+      - prod_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nexus} -d ${POSTGRES_DB:-nexus}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    image: node:20-bookworm-slim
+    working_dir: /workspace
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nexus}:${POSTGRES_PASSWORD:-change-me}@db:5432/${POSTGRES_DB:-nexus}
+      AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in .env}
+      AUTH_URL: ${AUTH_URL:?set AUTH_URL in .env}
+      NEXT_PUBLIC_TOLGEE_API_KEY: ${NEXT_PUBLIC_TOLGEE_API_KEY:-}
+      NEXT_PUBLIC_TOLGEE_API_URL: ${NEXT_PUBLIC_TOLGEE_API_URL:-}
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ./
+        target: /workspace
+        read_only: true
+      - prod_node_modules:/workspace/node_modules
+      - prod_pnpm_store:/root/.local/share/pnpm/store
+      - prod_next_cache:/workspace/apps/web/.next
+    command: >
+      sh -lc "
+      corepack enable &&
+      corepack prepare pnpm@9.1.0 --activate &&
+      pnpm install --frozen-lockfile &&
+      pnpm -C packages/db db:migrate:deploy &&
+      pnpm -C apps/web build &&
+      pnpm -C apps/web start --hostname 0.0.0.0 --port 3000
+      "
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  prod_postgres_data:
+  prod_node_modules:
+  prod_pnpm_store:
+  prod_next_cache:

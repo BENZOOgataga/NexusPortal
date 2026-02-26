@@ -1,0 +1,57 @@
+name: nexus-horizon-dev
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nexus}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nexus}
+      POSTGRES_DB: ${POSTGRES_DB:-nexus}
+    ports:
+      - "5433:5433"
+    volumes:
+      - dev_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nexus} -d ${POSTGRES_DB:-nexus}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    image: node:20-bookworm-slim
+    working_dir: /workspace
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      NEXT_TELEMETRY_DISABLED: "1"
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: "true"
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nexus}:${POSTGRES_PASSWORD:-nexus}@db:5433/${POSTGRES_DB:-nexus}
+      AUTH_SECRET: ${AUTH_SECRET:-dev-secret-change-me}
+      AUTH_URL: ${AUTH_URL:-http://localhost:3001}
+      NEXT_PUBLIC_TOLGEE_API_KEY: ${NEXT_PUBLIC_TOLGEE_API_KEY:-}
+      NEXT_PUBLIC_TOLGEE_API_URL: ${NEXT_PUBLIC_TOLGEE_API_URL:-}
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./:/workspace
+      - dev_node_modules:/workspace/node_modules
+      - dev_pnpm_store:/root/.local/share/pnpm/store
+      - dev_next_cache:/workspace/apps/web/.next
+    command: >
+      sh -lc "
+      corepack enable &&
+      corepack prepare pnpm@9.1.0 --activate &&
+      pnpm install --frozen-lockfile &&
+      pnpm -C apps/web dev --hostname 0.0.0.0 --port 3001
+      "
+
+volumes:
+  dev_postgres_data:
+  dev_node_modules:
+  dev_pnpm_store:
+  dev_next_cache:
