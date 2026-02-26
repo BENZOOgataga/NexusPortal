@@ -25,6 +25,7 @@ services:
         condition: service_healthy
     environment:
       NODE_ENV: production
+      CI: "true"
       NEXT_TELEMETRY_DISABLED: "1"
       DATABASE_URL: postgresql://${POSTGRES_USER:-nexus}:${POSTGRES_PASSWORD:-change-me}@db:5432/${POSTGRES_DB:-nexus}
       AUTH_SECRET: ${AUTH_SECRET:?set AUTH_SECRET in .env}
@@ -44,8 +45,8 @@ services:
       sh -lc "
       corepack enable &&
       corepack prepare pnpm@9.1.0 --activate &&
-      pnpm install --frozen-lockfile --prod=false &&
-      pnpm -C packages/db db:migrate:deploy &&
+      pnpm install --frozen-lockfile --prod=false --force --reporter=append-only &&
+      pnpm -C packages/db exec prisma migrate deploy &&
       pnpm -C apps/web build &&
       pnpm -C apps/web start --hostname 0.0.0.0 --port 3000
       "
