@@ -1,7 +1,12 @@
+'use client'
+
 import Image from 'next/image'
+import { useTranslate } from '@tolgee/react'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
 
 export default function CtaBanner() {
+  const { t } = useTranslate()
+
   return (
     <section
       className="w-full"
@@ -34,7 +39,7 @@ export default function CtaBanner() {
           >
             <Image
               src="/images/landing/footer.jpg"
-              alt="Bannière de recrutement Nexus Horizon Trade & Secure"
+              alt={t('cta.image_alt', 'Nexus Horizon Trade & Secure recruitment banner')}
               width={1600}
               height={900}
               style={{ width: '100%', height: 'auto', display: 'block' }}
@@ -42,7 +47,7 @@ export default function CtaBanner() {
           </div>
 
           <div className="font-mono text-text-muted uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '0.2em' }} aria-hidden="true">
-            — OUVERTURE DES CANDIDATURES —
+            {t('cta.section_label', '- APPLICATIONS OPEN -')}
           </div>
 
           <h2
@@ -56,12 +61,14 @@ export default function CtaBanner() {
               maxWidth: '700px',
             }}
           >
-            Intégrez une organisation orientée mission.
+            {t('cta.heading', 'Join a mission-focused organization.')}
           </h2>
 
           <p className="font-body text-text-secondary mb-12" style={{ fontSize: '14px', lineHeight: '1.8', maxWidth: '520px' }}>
-            Nous recrutons des profils fiables pour le combat, le soutien logistique, l&apos;industrie et la reconnaissance. Votre discipline compte plus
-            que votre vitrine.
+            {t(
+              'cta.description',
+              'We recruit reliable profiles for combat, logistics support, industry, and reconnaissance. Discipline matters more than image.'
+            )}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
@@ -80,7 +87,7 @@ export default function CtaBanner() {
                 display: 'inline-block',
               }}
             >
-              Ouvrir le dossier candidat
+              {t('cta.primary_button', 'Open candidate file')}
             </a>
             <a
               href="#doctrine"
@@ -96,7 +103,7 @@ export default function CtaBanner() {
                 display: 'inline-block',
               }}
             >
-              Lire la doctrine
+              {t('cta.secondary_button', 'Read doctrine')}
             </a>
           </div>
 

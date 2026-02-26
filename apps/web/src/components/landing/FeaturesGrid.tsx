@@ -1,5 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 import type { ReactNode } from 'react'
+import { useTranslate } from '@tolgee/react'
 import RevealOnScroll from '@/components/ui/RevealOnScroll'
 
 interface FeatureCard {
@@ -62,58 +65,61 @@ function RadarIcon() {
   )
 }
 
-const features: FeatureCard[] = [
-  {
-    icon: <HierarchyIcon />,
-    title: 'CHAÎNE DE COMMANDEMENT',
-    description: "Une hiérarchie claire, des grades explicites et des responsabilités nettes. Chaque opérateur sait à qui rendre compte et ce qu'il engage.",
-  },
-  {
-    icon: <ShieldIcon />,
-    title: 'DOCTRINE OPÉRATIONNELLE',
-    description: 'Préparation, exécution et débrief suivent un même protocole. Les missions sont conduites avec discipline, jamais improvisées.',
-  },
-  {
-    icon: <ShipIcon />,
-    title: 'FLOTTE MULTI-VECTEUR',
-    description: 'Combat, logistique, exploration et soutien industriel. Les escouades sont organisées pour déployer la bonne force au bon moment.',
-  },
-  {
-    icon: <RadarIcon />,
-    title: 'INTELLIGENCE ET SÉCURITÉ',
-    description: "Veille terrain, circulation d'information contrôlée et protection de la chaîne décisionnelle. La maîtrise de l'information reste prioritaire.",
-  },
-]
-
 export default function FeaturesGrid() {
+  const { t } = useTranslate()
+
+  const features: FeatureCard[] = [
+    {
+      icon: <HierarchyIcon />,
+      title: t('features.card_1_title', 'CHAIN OF COMMAND'),
+      description: t(
+        'features.card_1_desc',
+        "A clear hierarchy, explicit ranks, and defined responsibilities. Every operator knows who to report to and what they commit to."
+      ),
+    },
+    {
+      icon: <ShieldIcon />,
+      title: t('features.card_2_title', 'OPERATIONAL DOCTRINE'),
+      description: t(
+        'features.card_2_desc',
+        'Preparation, execution, and debrief all follow one protocol. Missions are run with discipline, never improvised.'
+      ),
+    },
+    {
+      icon: <ShipIcon />,
+      title: t('features.card_3_title', 'MULTI-VECTOR FLEET'),
+      description: t(
+        'features.card_3_desc',
+        'Combat, logistics, exploration, and industrial support. Squads are organized to deploy the right force at the right moment.'
+      ),
+    },
+    {
+      icon: <RadarIcon />,
+      title: t('features.card_4_title', 'INTEL AND SECURITY'),
+      description: t(
+        'features.card_4_desc',
+        'Field intel, controlled information flow, and decision-chain protection. Information control remains a priority.'
+      ),
+    },
+  ]
+
   return (
     <section className="w-full py-24 geo-grid-bg relative" style={{ background: '#0d1117' }} id="doctrine" aria-labelledby="features-heading">
       <div className="mx-auto px-10" style={{ maxWidth: '1440px' }}>
         <RevealOnScroll className="mb-16">
           <div className="font-mono text-text-muted uppercase mb-4" style={{ fontSize: '11px', letterSpacing: '0.2em' }} aria-hidden="true">
-            // PILIERS DE NEXUS HORIZON TRADE & SECURE
+            {t('features.section_label', '// PILLARS OF NEXUS HORIZON TRADE & SECURE')}
           </div>
-          <h2
-            id="features-heading"
-            className="font-display text-gold-primary uppercase"
-            style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 700, letterSpacing: '0.08em' }}
-          >
-            UNE ORGANISATION BÂTIE POUR DURER
+          <h2 id="features-heading" className="font-display text-gold-primary uppercase" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 700, letterSpacing: '0.08em' }}>
+            {t('features.heading', 'AN ORGANIZATION BUILT TO LAST')}
           </h2>
         </RevealOnScroll>
 
         <RevealOnScroll className="mb-12">
-          <div
-            style={{
-              border: '1px solid #2a3d52',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              background: '#0d1117',
-            }}
-          >
+          <div style={{ border: '1px solid #2a3d52', borderRadius: '8px', overflow: 'hidden', background: '#0d1117' }}>
             <Image
               src="/images/landing/teamup.png"
-              alt="Visuel doctrine et flotte Nexus Horizon Trade & Secure"
+              alt={t('features.image_alt', 'Doctrine and fleet visual for Nexus Horizon Trade & Secure')}
               width={1600}
               height={900}
               style={{ width: '100%', height: 'auto', display: 'block' }}

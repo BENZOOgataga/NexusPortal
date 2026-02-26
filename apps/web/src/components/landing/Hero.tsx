@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useTranslate } from '@tolgee/react'
 
 function DecorativeHex() {
   return (
@@ -33,6 +34,8 @@ function DecorativeHex() {
 }
 
 export default function Hero() {
+  const { t } = useTranslate()
+
   return (
     <section
       className="relative w-full flex flex-col items-center justify-center overflow-hidden"
@@ -47,13 +50,7 @@ export default function Hero() {
       <div className="absolute inset-0 star-field-3 pointer-events-none" aria-hidden="true" />
 
       <div className="absolute inset-0 opacity-25 pointer-events-none" aria-hidden="true">
-        <Image
-          src="/images/landing/header.png"
-          alt=""
-          fill
-          priority
-          className="object-cover"
-        />
+        <Image src="/images/landing/header.png" alt="" fill priority className="object-cover" />
       </div>
 
       <div
@@ -77,10 +74,7 @@ export default function Hero() {
         }}
       />
 
-      <div
-        className="relative z-10 flex flex-col items-center text-center px-6"
-        style={{ maxWidth: '860px', paddingTop: '80px', paddingBottom: '80px' }}
-      >
+      <div className="relative z-10 flex flex-col items-center text-center px-6" style={{ maxWidth: '860px', paddingTop: '80px', paddingBottom: '80px' }}>
         <div className="absolute pointer-events-none" aria-hidden="true" style={{ inset: 0 }}>
           <span style={{ position: 'absolute', top: 0, left: 0, width: 20, height: 20, borderTop: '1px solid rgba(201,168,76,0.5)', borderLeft: '1px solid rgba(201,168,76,0.5)' }} />
           <span style={{ position: 'absolute', top: 0, right: 0, width: 20, height: 20, borderTop: '1px solid rgba(201,168,76,0.5)', borderRight: '1px solid rgba(201,168,76,0.5)' }} />
@@ -88,11 +82,8 @@ export default function Hero() {
           <span style={{ position: 'absolute', bottom: 0, right: 0, width: 20, height: 20, borderBottom: '1px solid rgba(201,168,76,0.5)', borderRight: '1px solid rgba(201,168,76,0.5)' }} />
         </div>
 
-        <div
-          className="hero-el font-mono uppercase mb-8"
-          style={{ fontSize: '10px', letterSpacing: '0.25em', color: '#5a6a7a', animationDelay: '0.3s' }}
-        >
-          — ORGANISATION MULTI-VECTEUR — NHTSC 2954 —
+        <div className="hero-el font-mono uppercase mb-8" style={{ fontSize: '10px', letterSpacing: '0.25em', color: '#5a6a7a', animationDelay: '0.3s' }}>
+          {t('hero.classification', '- MULTI-VECTOR ORGANIZATION - NHTSC 2954 -')}
         </div>
 
         <h1
@@ -109,7 +100,7 @@ export default function Hero() {
             animationDelay: '0.55s',
           }}
         >
-          NEXUS HORIZON TRADE & SECURE
+          {t('hero.org_name', 'NEXUS HORIZON')}
         </h1>
 
         <p
@@ -123,32 +114,20 @@ export default function Hero() {
             animationDelay: '0.75s',
           }}
         >
-          Au-delà de l&apos;horizon.
+          {t('hero.motto', 'Beyond the horizon.')}
         </p>
 
-        <div
-          className="hero-el-fade rsi-divider w-full mb-8"
-          style={{ maxWidth: '280px', animationDelay: '0.95s' }}
-          aria-hidden="true"
-        >
+        <div className="hero-el-fade rsi-divider w-full mb-8" style={{ maxWidth: '280px', animationDelay: '0.95s' }} aria-hidden="true">
           <span className="font-mono text-gold-muted" style={{ fontSize: '11px' }}>
             ◆
           </span>
         </div>
 
-        <p
-          className="hero-el font-body text-text-secondary mb-12"
-          style={{
-            fontSize: '14px',
-            lineHeight: '1.9',
-            maxWidth: '580px',
-            letterSpacing: '0.01em',
-            animationDelay: '1.05s',
-          }}
-        >
-          Fondée pour opérer là où d&apos;autres s&apos;arrêtent. Combat, commandement stratégique, exploration profonde et opérations industrielles —
-          Nexus Horizon Trade &amp; Secure couvre tous les vecteurs avec discipline, structure et initiative. Chaque membre est un opérateur. Chaque
-          décision, un engagement.
+        <p className="hero-el font-body text-text-secondary mb-12" style={{ fontSize: '14px', lineHeight: '1.9', maxWidth: '580px', letterSpacing: '0.01em', animationDelay: '1.05s' }}>
+          {t(
+            'hero.description',
+            "Built to operate where others stop. Combat, strategic command, deep exploration, and industrial operations - Nexus Horizon Trade & Secure covers every vector with discipline, structure, and initiative. Every member is an operator. Every decision is a commitment."
+          )}
         </p>
 
         <div className="hero-el flex flex-col sm:flex-row gap-4 mb-14" style={{ animationDelay: '1.2s' }}>
@@ -167,7 +146,7 @@ export default function Hero() {
               display: 'inline-block',
             }}
           >
-            Rejoindre la flotte
+            {t('hero.cta_primary', 'Join the fleet')}
           </a>
           <a
             href="#doctrine"
@@ -183,25 +162,17 @@ export default function Hero() {
               display: 'inline-block',
             }}
           >
-            Découvrir l&apos;organisation
+            {t('hero.cta_secondary', 'Discover the organization')}
           </a>
         </div>
 
-        <div
-          className="hero-el-fade font-mono text-text-muted uppercase flex flex-col items-center gap-2"
-          style={{ fontSize: '10px', letterSpacing: '0.2em', animationDelay: '1.6s' }}
-          aria-hidden="true"
-        >
-          <span>↓ Explorer</span>
+        <div className="hero-el-fade font-mono text-text-muted uppercase flex flex-col items-center gap-2" style={{ fontSize: '10px', letterSpacing: '0.2em', animationDelay: '1.6s' }} aria-hidden="true">
+          <span>{t('hero.scroll_hint', 'Explore')}</span>
           <span style={{ display: 'block', width: '1px', height: '32px', background: 'linear-gradient(to bottom, rgba(201,168,76,0.5), transparent)' }} />
         </div>
       </div>
 
-      <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
-        aria-hidden="true"
-        style={{ height: '160px', background: 'linear-gradient(to bottom, transparent, #0d1117)' }}
-      />
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none" aria-hidden="true" style={{ height: '160px', background: 'linear-gradient(to bottom, transparent, #0d1117)' }} />
     </section>
   )
 }

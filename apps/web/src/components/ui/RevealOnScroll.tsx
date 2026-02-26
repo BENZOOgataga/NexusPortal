@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, type JSX } from 'react'
 
 interface RevealOnScrollProps {
   children: React.ReactNode
@@ -38,7 +38,7 @@ export default function RevealOnScroll({
   }, [])
 
   const dirClass =
-    direction === 'left'  ? 'reveal-left'  :
+    direction === 'left' ? 'reveal-left' :
     direction === 'right' ? 'reveal-right' :
     'reveal'
 
