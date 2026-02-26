@@ -1,13 +1,13 @@
 # Nexus Portal — FEATURES
 
 Application web de gestion pour organisations de Star Citizen.
-L'interface se présente comme un terminal militaire de l'United Empire of Earth (UEE), année ~2954.
+L'interface se présente comme un terminal militaire de l'United Empire of Earth (Nexus Horizon), année ~2954.
 
 ---
 
 ## Identité citoyenne
 
-Chaque utilisateur possède une identité UEE unique générée à la création de son compte. Cette identité se matérialise par une **carte d'identité visuelle** au design militaire, contenant son handle RSI, son organisation, un identifiant citoyen unique, et une double certification cryptographique (autorité UEE + signature personnelle). La carte est exportable en SVG haute qualité.
+Chaque utilisateur possède une identité Nexus Horizon unique générée à la création de son compte. Cette identité se matérialise par une **carte d'identité visuelle** au design militaire, contenant son handle RSI, son organisation, un identifiant citoyen unique, et une double certification cryptographique (autorité Nexus Horizon + signature personnelle). La carte est exportable en SVG haute qualité.
 
 Le profil de chaque citoyen affiche également une biographie libre, une citation personnelle, ses badges obtenus, son score de réputation auprès de l'organisation, et son historique d'activité sur la plateforme.
 
@@ -137,7 +137,7 @@ Chaque organisation dispose d'un **panneau d'administration** accessible uniquem
 
 La section communications est organisée en **channels** au sein de l'organisation. Il existe plusieurs types : channels texte standard, channels annonces (écriture réservée aux officiers), channels intel (accès restreint), et channels éphémères (se suppriment automatiquement après une durée définie).
 
-Les membres peuvent **mentionner** un collègue (`@handle`) ou un grade entier, déclenchant une notification. Les messages peuvent recevoir des **réactions** (pictogrammes symboliques SVG au style RSI/UEE — jamais d'emojis standard), être **épinglés** dans le channel, ou faire l'objet d'un **thread** (discussion dans un fil séparé).
+Les membres peuvent **mentionner** un collègue (`@handle`) ou un grade entier, déclenchant une notification. Les messages peuvent recevoir des **réactions** (pictogrammes symboliques SVG au style RSI/Nexus Horizon — jamais d'emojis standard), être **épinglés** dans le channel, ou faire l'objet d'un **thread** (discussion dans un fil séparé).
 
 Des **messages directs** permettent des conversations privées entre deux membres de la même organisation.
 
@@ -225,9 +225,9 @@ Une **blacklist inter-orgs** permet aux commandants de signaler des griefers. Le
 
 ## Expérience
 
-**Boot sequence** — au démarrage, un terminal s'anime ligne par ligne (initialisation du système UEE) avant d'afficher l'interface.
+**Boot sequence** — au démarrage, un terminal s'anime ligne par ligne (initialisation du système Nexus Horizon) avant d'afficher l'interface.
 
-**Stanton Time** — horloge UEE permanente dans l'interface, synchronisée sur l'heure réelle.
+**Stanton Time** — horloge Nexus Horizon permanente dans l'interface, synchronisée sur l'heure réelle.
 
 **Statut en ligne** — présence des membres visible partout dans l'interface.
 

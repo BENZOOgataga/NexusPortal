@@ -10,13 +10,13 @@ This is not a community website.
 This is not a marketing page.
 This is not a social platform.
 
-It is an internal system designed to reflect how a serious UEE-era organization would operate.
+It is an internal system designed to reflect how a serious Nexus Horizon-era organization would operate.
 
 ## What we are building
 
 We are building a diegetic command terminal.
 
-The platform must feel like an official RSI or UEE operational tool from the 2950+ era.  
+The platform must feel like an official RSI or Nexus Horizon operational tool from the 2950+ era.  
 Every design and engineering decision must reinforce this perception.
 
 The system should:

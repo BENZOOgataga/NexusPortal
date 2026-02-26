@@ -24,13 +24,13 @@
 
 ### Concept central
 
-Nexus Portal doit être perçu comme un **vrai outil interne de la corporation RSI**, pas comme une interface de jeu externe. L'utilisateur doit avoir l'impression d'utiliser un terminal UEE authentique, dans la continuité directe du site `robertsspaceindustries.com`.
+Nexus Portal doit être perçu comme un **vrai outil interne de la corporation RSI**, pas comme une interface de jeu externe. L'utilisateur doit avoir l'impression d'utiliser un terminal Nexus Horizon authentique, dans la continuité directe du site `robertsspaceindustries.com`.
 
 ### Principes directeurs
 
 | Principe | Description |
 |----------|-------------|
-| **Diegetic First** | L'interface existe dans l'univers. Chaque élément doit justifier sa présence logiquement dans le lore (Corp RSI, UEE, 2950+). |
+| **Diegetic First** | L'interface existe dans l'univers. Chaque élément doit justifier sa présence logiquement dans le lore (Corp RSI, Nexus Horizon, 2950+). |
 | **Dark & Premium** | Fond sombre, contrastes maîtrisés, accents dorés/cyan. Évocation d'un terminal de vaisseau capital ou d'une station spatiale haut de gamme. |
 | **Informational Density** | Beaucoup d'information sans surcharge. RSI utilise des espaces bien définis, des grilles serrées mais respirantes. |
 | **Techno-Corporate** | Mélange entre UI militaire (lignes précises, angles, codes couleur) et branding corporate (élégance, or, serif sur les titres de section). |
@@ -578,7 +578,7 @@ RSI utilise des **micro-ornements géométriques** caractéristiques :
 
 ## 7. Composants UI — In-Game (mobiGlas / Terminaux)
 
-L'interface in-game de Nexus Portal doit imiter les terminaux UEE et le mobiGlas de Star Citizen.
+L'interface in-game de Nexus Portal doit imiter les terminaux Nexus Horizon et le mobiGlas de Star Citizen.
 
 ### Principes mobiGlas
 
@@ -592,7 +592,7 @@ L'interface in-game de Nexus Portal doit imiter les terminaux UEE et le mobiGlas
 ### Terminaux in-universe
 
 ```css
-/* Style terminal UEE */
+/* Style terminal Nexus Horizon */
 .terminal {
   background: rgba(8, 14, 22, 0.92);
   border: 1px solid var(--color-cyan-dark);
@@ -824,7 +824,7 @@ L'interface in-game de Nexus Portal doit imiter les terminaux UEE et le mobiGlas
 Nexus Portal parle comme **une corporation de pointe du 30ème siècle** — pas comme une startup Silicon Valley. Les textes sont :
 
 - **Formels sans être rigides** : précis, techniques, avec une touche d'ambition corporate.
-- **In-universe** : les dates sont en format UEE (`2951-03-14`), les unités en aUEC, les lieux sont des systèmes stellaires.
+- **In-universe** : les dates sont en format Nexus Horizon (`2951-03-14`), les unités en aUEC, les lieux sont des systèmes stellaires.
 - **Économes** : RSI n'utilise pas de mots inutiles. Chaque label est court et précis.
 
 ### Formulations caractéristiques

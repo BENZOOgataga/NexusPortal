@@ -3,7 +3,7 @@
 ## Project Overview
 
 Nexus Portal is an internal command interface for a Star Citizen organization.
-It must feel like a classified UEE operational terminal — not a gaming site, not a SaaS dashboard.
+It must feel like a classified Nexus Horizon operational terminal — not a gaming site, not a SaaS dashboard.
 
 Read `docs/agents/CONTEXT.md` for the full product vision before starting any task.
 
@@ -40,7 +40,7 @@ Always consult these documents before making design or architectural decisions.
 ### Tone
 
 - All user-facing copy must be formal, in-universe, and technically precise
-- Dates: UEE format (`2951-03-14` for data, `30 NOV 2951` for display)
+- Dates: Nexus Horizon format (`2951-03-14` for data, `30 NOV 2951` for display)
 - Error messages carry codes: `ERR_4421`, `SYNC_FAILED`, `AUTH_DENIED`
 - Loading states: "SYNCHRONISATION EN COURS", not "Chargement..."
 - No emojis anywhere in the interface — use custom SVG pictograms where symbolic reactions are needed
