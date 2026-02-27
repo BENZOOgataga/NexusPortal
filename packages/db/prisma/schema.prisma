@@ -89,3 +89,23 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+model FleetShip {
+  id              String   @id @default(cuid())
+  orgTag          String   @default("NHTSC")
+  shipCode        String   @unique
+  vehicleName     String
+  infoLabel       String
+  locationLabel   String
+  statusLabel     String
+  focusLabel      String
+  cargo           Int
+  crew            Int
+  isTracked       Boolean  @default(false)
+  updatedByUserId String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([orgTag])
+  @@map("fleet_ship")
+}

@@ -118,6 +118,8 @@ const panelErrorCodeByAction: Record<PolicyAction, string> = {
   'dashboard.fleet.read': 'ERR_2405',
   'dashboard.notifications.read': 'ERR_2406',
   'dashboard.command.read': 'ERR_2407',
+  'fleet.ship.read': 'ERR_2501',
+  'fleet.ship.update': 'ERR_2502',
 }
 
 function panelSchema<T extends z.ZodTypeAny>(dataSchema: T) {

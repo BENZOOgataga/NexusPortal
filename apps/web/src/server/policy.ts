@@ -6,6 +6,8 @@ export type PolicyAction =
   | 'dashboard.fleet.read'
   | 'dashboard.notifications.read'
   | 'dashboard.command.read'
+  | 'fleet.ship.read'
+  | 'fleet.ship.update'
 
 export interface PolicyUser {
   id: string
@@ -54,6 +56,8 @@ export function can(_user: PolicyUser, action: PolicyAction, context: PolicyCont
     'dashboard.intel.read',
     'dashboard.fleet.read',
     'dashboard.notifications.read',
+    'fleet.ship.read',
+    'fleet.ship.update',
   ]
 
   if (baselineActions.includes(action)) {
