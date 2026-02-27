@@ -18,6 +18,15 @@ Read `docs/agents/CONTEXT.md` for the full product vision before starting any ta
 
 Always consult these documents before making design or architectural decisions.
 
+## Additional Required Rules
+
+- For every new sentence or word added in code/content, add a corresponding translation key.
+- Before adding a new translation key, verify the key or equivalent existing text key does not already exist.
+- Before making changes, inspect markdown context files, including at minimum:
+  - design guidelines markdown files
+  - `SKILL.md`
+  - `technical.md` / `TECHNICAL.md`
+
 ## Coding Principles
 
 ### Architecture
