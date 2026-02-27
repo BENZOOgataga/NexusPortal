@@ -58,6 +58,7 @@ loadWorkspaceRootPublicEnv()
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  transpilePackages: ['@nexus/db'],
   turbopack: {
     root: workspaceRoot,
   },

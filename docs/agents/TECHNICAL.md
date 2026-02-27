@@ -110,8 +110,8 @@ Provide a `.env.example` with all required variables, no secrets.
 Typical keys:
 
 * `DATABASE_URL=postgresql://user:pass@db:5432/nexus`
-* `AUTH_SECRET=...`
-* `AUTH_URL=http://localhost:3000`
+* `BETTER_AUTH_SECRET=...`
+* `BETTER_AUTH_URL=http://localhost:3000`
 
 Never commit `.env`.
 

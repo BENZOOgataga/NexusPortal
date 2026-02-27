@@ -1,57 +1,36 @@
 name: nexus-horizon-dev
+include:
+  - docker-compose.yml
 
 services:
   db:
-    image: postgres:16
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-nexus}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nexus}
-      POSTGRES_DB: ${POSTGRES_DB:-nexus}
-    ports:
+    ports: !override
       - "5433:5432"
-    volumes:
-      - dev_postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nexus} -d ${POSTGRES_DB:-nexus}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   web:
-    image: node:20-bookworm-slim
-    working_dir: /workspace
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
     environment:
-      NODE_ENV: development
-      NEXT_TELEMETRY_DISABLED: "1"
-      CHOKIDAR_USEPOLLING: "true"
-      WATCHPACK_POLLING: "true"
-      DATABASE_URL: postgresql://${POSTGRES_USER:-nexus}:${POSTGRES_PASSWORD:-nexus}@db:5432/${POSTGRES_DB:-nexus}
-      AUTH_SECRET: ${AUTH_SECRET:-dev-secret-change-me}
-      AUTH_URL: ${AUTH_URL:-http://localhost:31882}
-      NEXT_PUBLIC_TOLGEE_API_KEY: ${NEXT_PUBLIC_TOLGEE_API_KEY:-}
-      NEXT_PUBLIC_TOLGEE_API_URL: ${NEXT_PUBLIC_TOLGEE_API_URL:-}
-    ports:
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:31882}
+    ports: !override
       - "31882:3001"
-    volumes:
+    command: >
+      sh -lc "
+      apt-get update -y &&
+      apt-get install -y --no-install-recommends openssl ca-certificates &&
+      rm -rf /var/lib/apt/lists/* &&
+      corepack enable &&
+      corepack prepare pnpm@9.1.0 --activate &&
+      pnpm install --frozen-lockfile &&
+      pnpm -C packages/db db:push &&
+      pnpm -C packages/db db:generate &&
+      pnpm -C apps/web dev --hostname 0.0.0.0 --port 3001
+      "
+    volumes: !override
       - ./:/workspace
       - dev_node_modules:/workspace/node_modules
       - dev_pnpm_store:/root/.local/share/pnpm/store
       - dev_next_cache:/workspace/apps/web/.next
-    command: >
-      sh -lc "
-      corepack enable &&
-      corepack prepare pnpm@9.1.0 --activate &&
-      pnpm install --frozen-lockfile &&
-      pnpm -C apps/web dev --hostname 0.0.0.0 --port 3001
-      "
 
 volumes:
-  dev_postgres_data:
   dev_node_modules:
   dev_pnpm_store:
   dev_next_cache:

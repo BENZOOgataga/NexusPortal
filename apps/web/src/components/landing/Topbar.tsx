@@ -2,6 +2,7 @@
 
 import { useTranslate } from '@tolgee/react'
 import LanguageSwitcher from '@/components/i18n/LanguageSwitcher'
+import AuthAccessControl from '@/components/auth/AuthAccessControl'
 
 export default function Topbar() {
   const { t } = useTranslate()
@@ -27,6 +28,7 @@ export default function Topbar() {
           <span className="font-mono text-text-muted uppercase" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
             {t('topbar.tag', 'TAG')}: [NHTSC]
           </span>
+          <AuthAccessControl />
           <LanguageSwitcher />
           <span className="font-mono text-text-muted uppercase hidden sm:inline" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
             2954-02-26
