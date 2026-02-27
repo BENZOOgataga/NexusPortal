@@ -54,6 +54,7 @@ services:
       corepack prepare pnpm@9.1.0 --activate &&
       pnpm install --frozen-lockfile --prod=false --force --reporter=append-only &&
       pnpm -C packages/db exec prisma migrate deploy &&
+      pnpm -C packages/db db:generate &&
       pnpm -C apps/web build &&
       cd apps/web &&
       mkdir -p .next/standalone/apps/web/.next/static .next/standalone/apps/web/public &&
