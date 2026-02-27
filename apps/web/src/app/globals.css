@@ -44,10 +44,10 @@
   --color-border-gold:    #c9a84c;
 
   /* Typography */
-  --font-display: 'Orbitron', 'Eurostile', sans-serif;
-  --font-body:    'Exo 2', 'Titillium Web', sans-serif;
-  --font-ui:      'Share Tech Mono', 'Courier New', monospace;
-  --font-mono:    'Share Tech Mono', 'IBM Plex Mono', monospace;
+  --font-display: var(--font-display-google), 'Eurostile', sans-serif;
+  --font-body:    var(--font-body-google), 'Titillium Web', sans-serif;
+  --font-ui:      var(--font-ui-google), 'Courier New', monospace;
+  --font-mono:    var(--font-ui-google), 'IBM Plex Mono', monospace;
 
   /* Text sizes */
   --text-hero:    3.5rem;

@@ -40,13 +40,13 @@ export default function AuthEntryPanel({ mode, discordEnabled }: AuthEntryPanelP
             email,
             password,
             rememberMe: true,
-            callbackURL: '/member/dashboard',
+            callbackURL: '/dashboard',
           })
         : await authClient.signUp.email({
             name,
             email,
             password,
-            callbackURL: '/member/dashboard',
+            callbackURL: '/dashboard',
           })
 
       if (result.error) {
@@ -54,7 +54,7 @@ export default function AuthEntryPanel({ mode, discordEnabled }: AuthEntryPanelP
         return
       }
 
-      window.location.href = '/member/dashboard'
+      window.location.href = '/dashboard'
     } finally {
       setPendingMode(null)
     }
@@ -71,7 +71,7 @@ export default function AuthEntryPanel({ mode, discordEnabled }: AuthEntryPanelP
       setPendingMode('discord')
       const result = await authClient.signIn.social({
         provider: 'discord',
-        callbackURL: '/member/dashboard',
+        callbackURL: '/dashboard',
       })
 
       if (result?.error) {

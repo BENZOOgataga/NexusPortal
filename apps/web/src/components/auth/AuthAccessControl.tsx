@@ -19,7 +19,7 @@ export default function AuthAccessControl() {
   if (session?.user) {
     return (
       <Link
-        href="/member/dashboard"
+        href="/dashboard"
         className="font-mono uppercase text-text-secondary hover:text-gold-primary transition-colors duration-200"
         style={{ fontSize: '10px', letterSpacing: '0.1em' }}
       >
